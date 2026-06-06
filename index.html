@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NCERT Labs | Interactive Game Labs & Simulators</title>
+  <meta name="description" content="NCERT Labs is a beautiful interactive portal for Physics, Maths, Chemistry, Biology, JEE and NEET game labs and simulators from Class 1 to 12." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="orb orb-one"></div>
+  <div class="orb orb-two"></div>
+
+  <header class="site-header">
+    <nav class="nav shell">
+      <a class="brand" href="#home" aria-label="NCERT Labs Home">
+        <span class="brand-mark">NL</span>
+        <span>
+          <strong>NCERT Labs</strong>
+          <small>Game Labs • Simulators • Concept Builders</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open navigation">☰</button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#labs">Labs</a>
+        <a href="#subjects">Subjects</a>
+        <a href="#admin">Admin</a>
+        <button class="btn btn-soft" id="loginBtn">Admin Login</button>
+        <button class="btn btn-danger hidden" id="logoutBtn">Logout</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero shell">
+      <div class="hero-copy">
+        <div class="pill">🚀 Class 1–12 + JEE/NEET Digital Labs</div>
+        <h1>Interactive NCERT Labs for every chapter, every concept, every learner.</h1>
+        <p>
+          Build a premium library of Physics, Maths, Chemistry, Biology, JEE and NEET labs with images,
+          descriptions, filters, pagination and an admin dashboard powered by Google login.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#labs">Explore Labs</a>
+          <a class="btn btn-glass" href="#admin">Open Admin Dashboard</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong id="statLabs">0</strong><span>Total Labs</span></div>
+          <div><strong>4</strong><span>Core Subjects</span></div>
+          <div><strong>12</strong><span>Classes</span></div>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="mock-browser">
+          <div class="browser-dots"><span></span><span></span><span></span></div>
+          <div class="browser-screen">
+            <div class="floating-card big">
+              <span>Physics Lab</span>
+              <strong>Projectile Motion Arena</strong>
+              <small>Drag, launch, measure range and understand motion.</small>
+            </div>
+            <div class="floating-card small one">⚗️ Chemistry</div>
+            <div class="floating-card small two">🧬 Biology</div>
+            <div class="floating-card small three">📐 Maths</div>
+            <div class="pulse-ring"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="subject-strip shell" id="subjects">
+      <article><span>⚛️</span><strong>Physics</strong><small>Mechanics, Optics, Electricity</small></article>
+      <article><span>📐</span><strong>Maths</strong><small>Algebra, Geometry, Calculus</small></article>
+      <article><span>⚗️</span><strong>Chemistry</strong><small>Atoms, Molecules, Reactions</small></article>
+      <article><span>🧬</span><strong>Biology</strong><small>Cells, Body Systems, Ecology</small></article>
+      <article><span>🎯</span><strong>JEE/NEET</strong><small>Exam-focused simulators</small></article>
+    </section>
+
+    <section class="labs-section shell" id="labs">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Lab Library</span>
+          <h2>Browse interactive labs</h2>
+          <p>Search by subject, class, exam category, difficulty or keyword.</p>
+        </div>
+        <div class="layout-switcher">
+          <button class="icon-btn active" data-layout="grid" title="Grid view">▦</button>
+          <button class="icon-btn" data-layout="list" title="List view">☷</button>
+        </div>
+      </div>
+
+      <div class="filters-card">
+        <div class="field grow">
+          <label for="searchInput">Search</label>
+          <input id="searchInput" type="search" placeholder="Search projectile, cell, trigonometry..." />
+        </div>
+        <div class="field">
+          <label for="subjectFilter">Subject</label>
+          <select id="subjectFilter">
+            <option value="all">All Subjects</option>
+            <option>Physics</option>
+            <option>Maths</option>
+            <option>Chemistry</option>
+            <option>Biology</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="classFilter">Class</label>
+          <select id="classFilter">
+            <option value="all">All Classes</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="examFilter">Category</label>
+          <select id="examFilter">
+            <option value="all">All</option>
+            <option>NCERT</option>
+            <option>JEE</option>
+            <option>NEET</option>
+            <option>Olympiad</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <span id="resultCount">Showing 0 labs</span>
+        <div class="page-size-control">
+          <label for="publicPageSize">Labs per page</label>
+          <select id="publicPageSize">
+            <option>6</option>
+            <option selected>9</option>
+            <option>12</option>
+            <option>18</option>
+            <option>24</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="labs-grid" id="labsGrid"></div>
+      <div class="pagination" id="pagination"></div>
+    </section>
+
+    <section class="admin-section shell" id="admin">
+      <div class="admin-gate" id="adminGate">
+        <div>
+          <span class="eyebrow">Admin Dashboard</span>
+          <h2>Login with Gmail to manage labs</h2>
+          <p>Add labs, edit cards, control grid columns, rows, page size and featured content from one beautiful dashboard.</p>
+        </div>
+        <button class="btn btn-primary" id="adminLoginBtn">Login with Google</button>
+        <p class="note">Only allowed admin Gmail addresses can write to the database.</p>
+      </div>
+
+      <div class="admin-dashboard hidden" id="adminDashboard">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Control Center</span>
+            <h2>NCERT Labs Admin</h2>
+            <p id="adminIdentity">Signed in as admin</p>
+          </div>
+          <button class="btn btn-danger" id="adminLogoutBtn">Logout</button>
+        </div>
+
+        <div class="dashboard-grid">
+          <form class="admin-card form-card" id="labForm">
+            <input type="hidden" id="labId" />
+            <h3>Add / Edit Lab</h3>
+            <div class="form-grid">
+              <div class="field span-2">
+                <label for="title">Lab Title</label>
+                <input id="title" required placeholder="Projectile Motion Arena" />
+              </div>
+              <div class="field">
+                <label for="subject">Subject</label>
+                <select id="subject" required>
+                  <option>Physics</option>
+                  <option>Maths</option>
+                  <option>Chemistry</option>
+                  <option>Biology</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="classLevel">Class</label>
+                <select id="classLevel" required></select>
+              </div>
+              <div class="field">
+                <label for="category">Category</label>
+                <select id="category" required>
+                  <option>NCERT</option>
+                  <option>JEE</option>
+                  <option>NEET</option>
+                  <option>Olympiad</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="difficulty">Difficulty</label>
+                <select id="difficulty">
+                  <option>Foundation</option>
+                  <option>Intermediate</option>
+                  <option>Advanced</option>
+                  <option>Exam Pro</option>
+                </select>
+              </div>
+              <div class="field span-2">
+                <label for="imageUrl">Image URL</label>
+                <input id="imageUrl" placeholder="https://.../image.png" />
+              </div>
+              <div class="field span-2">
+                <label for="labUrl">Lab Link</label>
+                <input id="labUrl" required placeholder="https://neetphysicslab.yourdomain.com/lab1.html" />
+              </div>
+              <div class="field span-2">
+                <label for="description">Short Description</label>
+                <textarea id="description" rows="4" required placeholder="A concept-building simulator where students can change angle, velocity and gravity..."></textarea>
+              </div>
+              <div class="field span-2">
+                <label for="tags">Tags</label>
+                <input id="tags" placeholder="motion, graph, JEE, NEET" />
+              </div>
+              <label class="checkbox span-2">
+                <input id="featured" type="checkbox" />
+                <span>Mark as featured lab</span>
+              </label>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit">Save Lab</button>
+              <button class="btn btn-soft" type="button" id="resetFormBtn">Clear Form</button>
+            </div>
+          </form>
+
+          <aside class="admin-card settings-card">
+            <h3>Page Layout Settings</h3>
+            <div class="field">
+              <label for="gridColumns">Grid Columns</label>
+              <input id="gridColumns" type="number" min="1" max="4" value="3" />
+            </div>
+            <div class="field">
+              <label for="gridRows">Rows Per Page</label>
+              <input id="gridRows" type="number" min="1" max="8" value="3" />
+            </div>
+            <div class="field">
+              <label for="maxLabs">Max Labs Per Page</label>
+              <input id="maxLabs" type="number" min="3" max="48" value="9" />
+            </div>
+            <button class="btn btn-primary full" id="saveSettingsBtn">Save Settings</button>
+            <p class="note">Formula: page size can be controlled directly, or by columns × rows.</p>
+
+            <div class="mini-stats">
+              <div><strong id="adminTotalLabs">0</strong><span>Labs</span></div>
+              <div><strong id="featuredCount">0</strong><span>Featured</span></div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="admin-card">
+          <h3>Manage Existing Labs</h3>
+          <div class="admin-list" id="adminList"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div>
+        <strong>NCERT Labs</strong>
+        <p>Interactive learning labs for school + competitive exams.</p>
+      </div>
+      <span>Powered by modern HTML, CSS, JavaScript & Firebase</span>
+    </div>
+  </footer>
+
+  <template id="labCardTemplate">
+    <article class="lab-card">
+      <div class="lab-image"></div>
+      <div class="lab-body">
+        <div class="lab-meta"></div>
+        <h3></h3>
+        <p></p>
+        <div class="lab-tags"></div>
+        <a class="btn btn-primary open-lab" target="_blank" rel="noopener">Open Lab →</a>
+      </div>
+    </article>
+  </template>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
